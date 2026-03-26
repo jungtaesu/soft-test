@@ -3,7 +3,7 @@ import Mission1App from './MISSION1/App';
 import MISSION2순수JS from './MISSION2-순수JS/App';
 import QeuryParamApp from './MISSION2-QueryParam/QeuryParamApp';
 import PostForm from './MISSION3/components/postForm';
-import AI기반PostForm from './MISSION3/components/AI기반PostForm';
+import AI기반PostForm from './MISSION3/components/AIBasedPostForm';
 
 type AppMode = 'state' | 'queryParam' | 'postForm' | 'aiPostForm' | 'default';
 

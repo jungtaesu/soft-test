@@ -11,7 +11,7 @@ const initialValues: PostFormValues = {
   likesThreshold: '',
 };
 
-const AI기반PostForm = () => {
+const AIBasedPostForm = () => {
   const { values, errors, handleChange, handleSubmit } = useForm(
     postRules,
     initialValues
@@ -105,4 +105,4 @@ const AI기반PostForm = () => {
   );
 };
 
-export default AI기반PostForm;
+export default AIBasedPostForm;
