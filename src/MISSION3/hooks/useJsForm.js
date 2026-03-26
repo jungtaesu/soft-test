@@ -36,18 +36,18 @@ function useForm(rules, initialValues) {
         return '';
     };
 
-    const handleChange = (name, value) => {
-        setValues({ ...values, [name]: value });
-        const error = validate(name, value);
-        setErrors({ ...errors, [name]: error });
-    };
-
     // const handleChange = (name, value) => {
-    //     // stale state 방지
-    //     setValues((prev) => ({ ...prev, [name]: value }));
+    //     setValues({ ...values, [name]: value });
     //     const error = validate(name, value);
-    //     setErrors((prev) => ({ ...prev, [name]: error }));
+    //     setErrors({ ...errors, [name]: error });
     // };
+
+    const handleChange = (name, value) => {
+        // stale state 방지
+        setValues((prev) => ({ ...prev, [name]: value }));
+        const error = validate(name, value);
+        setErrors((prev) => ({ ...prev, [name]: error }));
+    };
 
     // const handleSubmit = (onSubmit) => {
     //     return (event) => {
