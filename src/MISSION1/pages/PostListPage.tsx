@@ -33,7 +33,11 @@ const PostListPage = ({ userId, categoryId, onPostClick, onCategoryChange }: Pos
     new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime() 
 );
 
-  const handleClick = useCallback((postId: number) => {
+  // const handleClick = (postId: number) => {
+  //   onPostClick(postId);
+  // };
+
+    const handleClick = useCallback((postId: number) => {
     onPostClick(postId);
   }, [onPostClick]);
 
@@ -49,7 +53,7 @@ const PostListPage = ({ userId, categoryId, onPostClick, onCategoryChange }: Pos
         <PostItem
           key={post.title}
           post={post}
-          handleClick={handleClick}
+          handleClick={() => handleClick(post.id)}
           user={user}
           userId={userId}
           categoryId={categoryId}

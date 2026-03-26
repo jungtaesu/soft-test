@@ -9,7 +9,7 @@ type PostItemProps = {
   categoryId?: number | null;
 };
 
-// const PostItem = React.memo(({ 
+// const PostItem = ({ 
 const PostItem = React.memo(({ 
   post,
   handleClick,
@@ -57,5 +57,6 @@ const PostItem = React.memo(({
     </article>
   );
   });
+  // };
 
 export default PostItem;
