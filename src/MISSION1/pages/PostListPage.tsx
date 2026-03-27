@@ -17,14 +17,12 @@ const PostListPage = ({ userId, categoryId, onPostClick, onCategoryChange }: Pos
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    //도메인이 다르니까 따로 useEffect 분리
     fetchPosts(userId, categoryId).then(data => {
       setPosts(data);
     });
   }, [categoryId]);
 
   useEffect(() => {
-    //도메인이 다르니까 따로 useEffect 분리
     fetchUser(userId).then(setUser);
   }, [userId]);
 
@@ -32,10 +30,6 @@ const PostListPage = ({ userId, categoryId, onPostClick, onCategoryChange }: Pos
   const sortedPosts = [...posts].sort((a, b) => 
     new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime() 
 );
-
-  // const handleClick = (postId: number) => {
-  //   onPostClick(postId);
-  // };
 
     const handleClick = useCallback((postId: number) => {
     onPostClick(postId);

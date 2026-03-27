@@ -30,7 +30,6 @@ const QueryParamPostListPage = ({
   const [posts, setPosts] = useState<Post[]>([]);
   const [user, setUser] = useState<User | null>(null);
 
-  // 카테고리와 고급 필터 통합
   const filteredPosts = useMemo(() => {
     const completeFilters: PostFilterValues = {
       ...advancedFilters,
@@ -40,18 +39,15 @@ const QueryParamPostListPage = ({
   }, [posts, advancedFilters, categoryId]);
 
   useEffect(() => {
-    // 도메인이 다르니까 따로 useEffect 분리
     fetchPosts(userId, categoryId).then(data => {
       setPosts(data);
     });
   }, [userId, categoryId]);
 
   useEffect(() => {
-    // 도메인이 다르니까 따로 useEffect 분리
     fetchUser(userId).then(setUser);
   }, [userId]);
 
-  // 필터링된 posts를 최신순으로 정렬
   const sortedAndFilteredPosts = useMemo(() => {
     return [...filteredPosts].sort(
       (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()

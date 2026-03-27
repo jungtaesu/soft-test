@@ -5,6 +5,7 @@
 Vite + React + TypeScript 환경에서 진행.
 원본 레포 미제공으로, 과제 수행에 필요한 최소 범위 내에서 mock 데이터와 더미 컴포넌트를 직접 구성함.
 
+AI 대화 로그: https://chatgpt.com/share/69c5dcfb-e14c-83a8-a4d2-9903fef355bc
 
 # MISSION 1 — 레거시 코드 진단 및 리팩토링
 

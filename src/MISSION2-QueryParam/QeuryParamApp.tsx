@@ -5,12 +5,6 @@ import type { PostFilterValues } from '../types/filter';
 
 type AdvancedFilterValues = Omit<PostFilterValues, 'categoryId'>;
 
-/**
- * 쿼리파라미터App: URL 쿼리 파라미터 방식
- * - 필터 상태를 URL에 저장
- * - 페이지 새로고침 시 상태 복원
- * - 링크 공유 가능
- */
 function QueryParamApp() {
   const [categoryId, setCategoryId] = useState<number | null>(null);
   const [advancedFilters, setAdvancedFilters] = useState<AdvancedFilterValues>({
@@ -42,7 +36,6 @@ function QueryParamApp() {
     });
   }, [advancedFilters]);
 
-  // 고급 필터 변경
   const handleAdvancedFilterChange = useCallback((newFilters: AdvancedFilterValues) => {
     setAdvancedFilters(newFilters);
     // URL 업데이트

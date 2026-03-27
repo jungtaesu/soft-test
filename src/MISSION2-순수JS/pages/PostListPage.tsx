@@ -21,7 +21,6 @@ const PostListPage = ({ userId, categoryId, onPostClick, onCategoryChange }: Pos
   const [posts, setPosts] = useState<Post[]>([]);
   const [user, setUser] = useState<User | null>(null);
   
-  // Mission 2: 고급 필터 - categoryId 제외
   const [advancedFilters, setAdvancedFilters] = useState<AdvancedFilterValues>({
     startDate: '',
     endDate: '',
@@ -29,7 +28,6 @@ const PostListPage = ({ userId, categoryId, onPostClick, onCategoryChange }: Pos
     query: ''
   });
 
-  // 카테고리와 고급 필터 통합
   const filteredPosts = useMemo(() => {
     const completeFilters: PostFilterValues = {
       ...advancedFilters,
@@ -39,16 +37,12 @@ const PostListPage = ({ userId, categoryId, onPostClick, onCategoryChange }: Pos
   }, [posts, advancedFilters, categoryId]);
 
   useEffect(() => {
-    //도메인이 다르니까 따로 useEffect 분리
-    // setLoading(true);
     fetchPosts(userId, categoryId).then(data => {
       setPosts(data);
-      // setLoading(false);
     });
   }, [categoryId]);
 
   useEffect(() => {
-    //도메인이 다르니까 따로 useEffect 분리
     fetchUser(userId).then(setUser);
   }, [userId]);
 
@@ -58,10 +52,6 @@ const PostListPage = ({ userId, categoryId, onPostClick, onCategoryChange }: Pos
       (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
   }, [filteredPosts]);
-
-//   const sortedPosts = [...posts].sort((a, b) => 
-//     new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime() 
-// );
 
   const handleClick = useCallback((postId: number) => {
     onPostClick(postId);
@@ -83,12 +73,10 @@ const PostListPage = ({ userId, categoryId, onPostClick, onCategoryChange }: Pos
         filters={advancedFilters}
         onChange={handleAdvancedFilterChange}
       />
-      {/* {sortedPosts.map(post => ( */}
       {sortedAndFilteredPosts.map(post => (
         <PostItem
           key={post.title}
           post={post}
-          //handleClick는 부모에서 계속 새로 만들어지는 함수이기 때문에, PostItem이 memoization 되어도 handleClick이 바뀌어서 리렌더링이 된다.
           handleClick={handleClick}
           user={user}
           userId={userId}
